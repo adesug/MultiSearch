@@ -19,8 +19,8 @@
 
 	<p>Cari Data Pegawai :</p>
 	<form action="/pegawai/cari" method="GET">
-		<input type="text" name="jenis_pekerjaan" placeholder="Cari Jabatan .." value="{{ old('jenis_pekerjaan') }}">
-        <input type="number" name="umur" placeholder="Cari umur .." value="{{ old('umur') }}">
+		<input type="text" name="jenis_pekerjaan" placeholder="Cari Jabatan .." value="{{ isset($_GET['jenis_pekerjaan']) ? $_GET['jenis_pekerjaan'] : '' }}">
+        <input type="number" name="umur" placeholder="Cari umur .." value="{{ isset($_GET['umur']) ? $_GET['umur'] : '' }}">
 		<input type="submit" value="CARI">
 	</form>
 

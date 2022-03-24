@@ -30,7 +30,6 @@ class PegawaiController extends Controller
                     if (!empty($jenis_pekerjaan)) {
                         $query->where('jenis_pekerjaan', $jenis_pekerjaan);
                     }
-
                     if (!empty($umur)) {
                         $query->where('umur', $umur);
                     }
