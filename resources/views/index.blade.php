@@ -23,7 +23,7 @@
         <input type="number" name="umur" placeholder="Cari umur .." value="{{ old('umur') }}">
 		<input type="submit" value="CARI">
 	</form>
-		
+
 	<br/>
 
 	<table border="1">
@@ -31,14 +31,14 @@
 			<th>Nama</th>
 			<th>Jabatan</th>
 			<th>Umur</th>
-		
+
 		</tr>
 		@foreach($pegawai as $p)
 		<tr>
 			<td>{{ $p->name }}</td>
 			<td>{{ $p->jenis_pekerjaan }}</td>
 			<td>{{ $p->umur }}</td>
-		
+
 		</tr>
 		@endforeach
 	</table>

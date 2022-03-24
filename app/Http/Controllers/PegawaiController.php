@@ -14,22 +14,29 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        	
-		$pegawai = DB::table('pegawais')->paginate(10);
-        return view('index',['pegawai' => $pegawai]);
 
+        $pegawai = DB::table('pegawais')->paginate(10);
+        return view('index', ['pegawai' => $pegawai]);
     }
+    
     public function cari(Request $request)
-	{
-	
-		$jenis_pekerjaan = $request->jenis_pekerjaan;
+    {
+
+        $jenis_pekerjaan = $request->jenis_pekerjaan;
         $umur = $request->umur;
-		$pegawai = DB::table('pegawais')
-		->where('jenis_pekerjaan',$jenis_pekerjaan)->orWhere('umur',$umur)
-		->paginate();
-		return view('index',['pegawai' => $pegawai]);
- 
-	}
+        $pegawai = DB::table('pegawais')
+            ->where('jenis_pekerjaan', $jenis_pekerjaan)
+            ->where(
+                function ($query) use ($umur) {
+                    if (!empty($umur)) {
+                        $query->where('umur', $umur);
+                    }
+                }
+            )
+            ->paginate();
+
+        return view('index', ['pegawai' => $pegawai]);
+    }
 
     /**
      * Show the form for creating a new resource.
