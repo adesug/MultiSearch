@@ -18,16 +18,19 @@ class PegawaiController extends Controller
         $pegawai = DB::table('pegawais')->paginate(10);
         return view('index', ['pegawai' => $pegawai]);
     }
-    
+
     public function cari(Request $request)
     {
 
         $jenis_pekerjaan = $request->jenis_pekerjaan;
         $umur = $request->umur;
         $pegawai = DB::table('pegawais')
-            ->where('jenis_pekerjaan', $jenis_pekerjaan)
             ->where(
-                function ($query) use ($umur) {
+                function ($query) use ($jenis_pekerjaan, $umur) {
+                    if (!empty($jenis_pekerjaan)) {
+                        $query->where('jenis_pekerjaan', $jenis_pekerjaan);
+                    }
+
                     if (!empty($umur)) {
                         $query->where('umur', $umur);
                     }
